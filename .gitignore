@@ -61,3 +61,8 @@ $RECYCLE.BIN/
 *.msi
 *.msm
 *.msp
+
+.idea
+*.iml
+gradle
+gradlew*
