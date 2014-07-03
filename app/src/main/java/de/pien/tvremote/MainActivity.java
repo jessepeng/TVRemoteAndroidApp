@@ -49,6 +49,16 @@ public class MainActivity extends Activity {
     	client.sendString("{UP}");    	
     }
 
+    public void clickNumber(View v) {
+        String number = ((TextView)v).getText().toString();
+        client.sendString(number);
+    }
+
+    public void clickVolume(View v) {
+        String upOrDown =((TextView)v).getText().toString();
+        client.sendString("volume" + upOrDown);
+    }
+
     public void clickRestart(View v) {
         client.sendString("reset");
     }
