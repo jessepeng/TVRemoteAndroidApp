@@ -16,7 +16,7 @@
         android:onClick="clickUp"
         android:text="↑"
         android:textSize="90sp"
-        android:layout_below="@+id/textConnection"
+        android:layout_below="@+id/buttonClose"
         android:layout_alignLeft="@+id/btnRestart"
         android:layout_alignRight="@+id/btnRestart"
         android:layout_marginTop="15dp" />
@@ -44,7 +44,8 @@
         android:layout_alignParentTop="true"
         android:layout_marginLeft="0dp"
         android:layout_marginTop="0dp"
-        android:layout_marginBottom="0dp" />
+        android:layout_alignBottom="@+id/buttonClose"
+        android:gravity="center_vertical" />
 
     <Button
         android:layout_width="wrap_content"
@@ -162,7 +163,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="clickVolume"
+        android:onClick="clickPlus"
         android:text="+"
         android:id="@+id/buttonPlus"
         android:layout_alignParentBottom="true"
@@ -171,10 +172,29 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:onClick="clickVolume"
+        android:onClick="clickNumber"
         android:text="-"
         android:id="@+id/buttonMinus"
         android:layout_alignParentBottom="true"
         android:layout_alignLeft="@+id/button7"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="clickMute"
+        android:text="Mute"
+        android:id="@+id/buttonMute"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/button8"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="clickClose"
+        android:text="X"
+        android:id="@+id/buttonClose"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/ButtonUp"
+        android:layout_alignEnd="@+id/ButtonUp" />
 
 </RelativeLayout>
