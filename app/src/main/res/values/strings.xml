@@ -7,5 +7,6 @@
     <string name="connection_connecting">Verbindung wird hergestellt&#8230;</string>
     <string name="connection_connected">Verbindung hergestellt.</string>
     <string name="connection_failed">Verbindung fehlgeschlagen.</string>
+    <string name="button_restart">Neu starten</string>
 
 </resources>

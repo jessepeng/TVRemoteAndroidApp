@@ -13,19 +13,23 @@ public abstract class Client {
 
 	private BufferedWriter writer;
     private BufferedReader reader;
+    private Socket clientSocket;
 	
 	public Client(String server, int port) {
 		this.server = server;
 		this.port = port;
 	}
-	
+
+    /**
+     * Connects to the server using the given IP address and port.
+     */
 	public void connect() {
 		new Thread(new Runnable() {
 
 			@Override
 			public void run() {
 				try {
-					Socket clientSocket = new Socket(server, port);
+					clientSocket = new Socket(server, port);
 					writer = new BufferedWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
                     reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
                     clientSocket.setSoTimeout(5000);
@@ -43,6 +47,26 @@ public abstract class Client {
 			
 		}).start();
 	}
+
+    /**
+     * Disconnects from the server.
+     */
+    public void disconnect() {
+        try {
+            if (writer != null) writer.close();
+        } catch (IOException e) { // Resume
+        } finally {
+            try {
+                if (reader != null) reader.close();
+            } catch (IOException e) { // Resume
+            } finally {
+                try {
+                    if (clientSocket != null) clientSocket.close();
+                } catch (IOException e) { // Resume
+                }
+            }
+        }
+    }
 
     private void connectHandler() {
         Handler refresh = new Handler(Looper.getMainLooper());
@@ -62,10 +86,20 @@ public abstract class Client {
         });
     }
 
+    /**
+     * Is called when the connection has been successfully established.
+     */
     public abstract void onConnect();
 
+    /**
+     * Is called when the connection fails for any reason.
+     */
     public abstract void onConnectFail();
-	
+
+    /**
+     * Sends a line to the server
+     * @param line message
+     */
 	public void sendString(String line) {
 		if (writer != null) {
 			try {

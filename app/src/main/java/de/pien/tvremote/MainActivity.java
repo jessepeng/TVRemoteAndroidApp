@@ -27,7 +27,18 @@ public class MainActivity extends Activity {
                 ((TextView)findViewById(R.id.textConnection)).setText(R.string.connection_failed);
             }
         };
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
         client.connect();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        client.disconnect();
     }
     
     public void clickUp(View v) {
@@ -36,6 +47,10 @@ public class MainActivity extends Activity {
     
     public void clickDown(View v) {
     	client.sendString("{UP}");    	
+    }
+
+    public void clickRestart(View v) {
+        client.sendString("reset");
     }
     
 }
